@@ -1,0 +1,7 @@
+export const LOADING_PAGE_IDENTIFIER = 'loading-page'
+export const LOGIN_PAGE_IDENTIFIER = 'login-page'
+export const REGISTER_PAGE_IDENTIFIER = 'register-page'
+export const RESET_PASSWORD_PAGE_IDENTIFIER = 'reset-password-page'
+export const HOME_PAGE_IDENTIFIER = 'home-page'
+export const EDIT_PAGE_IDENTIFIER = 'edit-page'
+export const STREAM_PAGE_IDENTIFIER = 'stream-page'
