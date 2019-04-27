@@ -1,0 +1,33 @@
+.login-page, .register-page {
+  .login-page-container, .register-page-container {
+    min-width: 400px;
+    width: 60%;
+    margin: auto;
+    background: $light;
+    padding: 40px;
+
+    animation-duration: .5s;
+    animation-fill-mode: both;
+    animation-name: bounceInLeft;
+    backface-visibility: visible;
+
+    h1.title {
+      text-align: center;
+    }
+
+    .button-component {
+      text-align: center;
+    }
+
+    .link-component {
+      text-align: center;
+    }
+  }
+
+  .page-container-out {
+    animation-duration: .5s;
+    animation-fill-mode: both;
+    animation-name: bounceOutRight;
+    backface-visibility: visible;
+  }
+}

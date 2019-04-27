@@ -2,6 +2,7 @@ import React from 'react'
 import LoginForm from '../wrappers/LoginForm'
 import LoadingWrapper from '../wrappers/LoadingWrapper'
 import FormPage from './abstract/FormPage'
+import ErrorMessage from '../components/ErrorMessage.jsx'
 
 class LoginPage extends FormPage {
   constructor (props) {
@@ -21,12 +22,14 @@ class LoginPage extends FormPage {
 
   render () {
     return (
-      <div className="login-page">
-        <h1>Login page</h1>
-        <p>{this.state.error}</p>
-        <LoginForm onSubmit={this.submitForm} />
-        <div className={this.state.isLoading ? null : 'hide'}>
-          <LoadingWrapper background="rgba(0, 0, 0, 0.3)" color="#61DAFB" />
+      <div className="page login-page">
+        <div className={`login-page-container ${this.state.out ? 'page-container-out' : ''}`}>
+          <h1 className="title">Login page</h1>
+          <ErrorMessage removeError={this.removeError} message={this.state.error} />
+          <LoginForm onSubmit={this.submitForm} outAnimationSetter={this.setOut} />
+          <div className={this.state.isLoading ? null : 'unvisible'}>
+            <LoadingWrapper background="rgba(0, 0, 0, 0.7)" color="#61DAFB" />
+          </div>
         </div>
       </div>
     )

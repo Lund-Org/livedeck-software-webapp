@@ -19,7 +19,7 @@ class App extends Component {
       },
       bindings: {
         data: [],
-        updateBinding: this.updateStateKey('bindings')
+        updateBindings: this.updateStateKey('bindings')
       },
       categories: {
         data: [],

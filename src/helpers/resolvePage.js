@@ -13,13 +13,23 @@ export default function (currentPage, appState) {
     case pagesIdentifier.LOGIN_PAGE_IDENTIFIER:
       return (
         <CurrentPageContext.Provider value={appState.currentPage}>
-          <LoginPage user={appState.user} currentPage={appState.currentPage} websocket={appState.websocket} />
+          <LoginPage
+            user={appState.user}
+            categories={appState.categories}
+            bindings={appState.bindings}
+            currentPage={appState.currentPage}
+            websocket={appState.websocket} />
         </CurrentPageContext.Provider>
       )
     case pagesIdentifier.REGISTER_PAGE_IDENTIFIER:
       return (
         <CurrentPageContext.Provider value={appState.currentPage}>
-          <RegisterPage user={appState.user} currentPage={appState.currentPage} websocket={appState.websocket} />
+          <RegisterPage
+            user={appState.user}
+            categories={appState.categories}
+            bindings={appState.bindings}
+            currentPage={appState.currentPage}
+            websocket={appState.websocket} />
         </CurrentPageContext.Provider>
       )
     // case pagesIdentifier.RESET_PASSWORD_PAGE_IDENTIFIER:

@@ -20,12 +20,16 @@ class ClassicInput extends Component {
 
   render () {
     return (
-      <div className="input-block">
-        <div>
-          <label>{this.props.label}</label>
+      <div className="input-block classic-input-component field is-horizontal">
+        <div className="field-label is-normal">
+          <label className="label">{this.props.label}</label>
         </div>
-        <div>
-          <input type={this.props.type} value={this.props.value} onKeyDown={this.submitForm} onChange={this.props.onType} />
+        <div className="field-body">
+          <div className="field">
+            <div className="control">
+              <input className="input" type={this.props.type} value={this.props.value} onKeyDown={this.submitForm} onChange={this.props.onType} />
+            </div>
+          </div>
         </div>
       </div>
     )

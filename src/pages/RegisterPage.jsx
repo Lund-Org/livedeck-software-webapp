@@ -4,6 +4,7 @@ import userAPI from '../api/userAPI'
 import RegisterForm from '../wrappers/RegisterForm'
 import LoadingWrapper from '../wrappers/LoadingWrapper'
 import FormPage from './abstract/FormPage'
+import ErrorMessage from '../components/ErrorMessage.jsx'
 
 class RegisterPage extends FormPage {
   constructor (props) {
@@ -28,12 +29,14 @@ class RegisterPage extends FormPage {
 
   render () {
     return (
-      <div className="register-page">
-        <h1>Register page</h1>
-        <p>{this.state.error}</p>
-        <RegisterForm onSubmit={this.submitForm} />
-        <div className={this.state.isLoading ? null : 'hide'}>
-          <LoadingWrapper background="rgba(0, 0, 0, 0.3)" color="#61DAFB" />
+      <div className="page register-page">
+        <div className={`register-page-container ${this.state.out ? 'page-container-out' : ''}`}>
+          <h1 className="title">Register page</h1>
+          <ErrorMessage removeError={this.removeError} message={this.state.error} />
+          <RegisterForm onSubmit={this.submitForm} outAnimationSetter={this.setOut} />
+          <div className={this.state.isLoading ? null : 'unvisible'}>
+            <LoadingWrapper background="rgba(0, 0, 0, 0.7)" color="#61DAFB" />
+          </div>
         </div>
       </div>
     )

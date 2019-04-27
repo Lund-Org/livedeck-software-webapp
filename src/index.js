@@ -8,11 +8,9 @@ global.endpoint = (typeof window.endpoint === 'string') ? window.endpoint : 'loc
 
 // for test purposes
 document.addEventListener('livedeck-app-ready', () => {
-  setTimeout(() => {
-    let event = new window.Event('livedeck-user-loaded')
-    // event.data = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemF0aW9uIjoiMGJlZDk4OGQtNDRmMi00YjMxLWE4ZWMtODE2NDRmMDk0ZWQ1In0.8SKNJgKBfJwE6tHUuRr-vl2JoZMbovet7diqMnQfXQc'
-    document.dispatchEvent(event)
-  }, 5000)
+  let event = new window.Event('livedeck-user-loaded')
+  // event.data = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemF0aW9uIjoiMGJlZDk4OGQtNDRmMi00YjMxLWE4ZWMtODE2NDRmMDk0ZWQ1In0.8SKNJgKBfJwE6tHUuRr-vl2JoZMbovet7diqMnQfXQc'
+  document.dispatchEvent(event)
 })
 
 ReactDOM.render(<App />, document.getElementById('root'))

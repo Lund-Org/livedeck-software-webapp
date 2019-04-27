@@ -1,0 +1,25 @@
+.home-page {
+  flex-flow: column;
+
+  .link-component {
+    width: 80%;
+    height: 40%;
+    margin: 5%;
+    font-size: 25px;
+    font-weight: bold;
+    transition: all .5s ease-in-out;
+
+    &:hover {
+      width: calc(80% + 15px);
+      height: calc(40% + 15px);
+    }
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      color: inherit;
+    }
+  }
+}

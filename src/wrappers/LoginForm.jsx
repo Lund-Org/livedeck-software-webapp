@@ -13,16 +13,16 @@ class LoginForm extends Form {
     return (
       <div className="login-form">
         <ClassicInput
-          type='text' label='username' value={this.state.username}
+          type='text' label='Username' value={this.state.username}
           onSubmit={this.submitForm} onType={this.updateState('username')}
         />
         <ClassicInput
-          type='password' label='password' value={this.state.password}
+          type='password' label='Password' value={this.state.password}
           onSubmit={this.submitForm} onType={this.updateState('password')}
         />
         <SubmitButton buttonLabel='Login' onSubmit={this.submitForm} />
         <div>
-          <Link redirectPage={REGISTER_PAGE_IDENTIFIER} label="Register" />
+          <Link preClick={this.props.outAnimationSetter} delay={500} redirectPage={REGISTER_PAGE_IDENTIFIER} label="Register" />
           {/* <Link redirectPage={RESET_PASSWORD_PAGE_IDENTIFIER} label="Forget Password ?" /> */}
         </div>
       </div>

@@ -1,0 +1,39 @@
+@import "initialVariables";
+@import "bulma";
+@import "animation";
+@import "pages/loadingPage";
+@import "pages/formPage";
+@import "pages/homePage";
+@import "wrappers/loadingWrapper";
+
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  background: #273033;
+}
+
+body {
+  height: 100vh;
+  min-height: 100vh;
+}
+
+#root, .app, .page {
+  height: 100%;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.hide {
+  display: none;
+}
+
+.unvisible {
+  visibility: hidden;
+}

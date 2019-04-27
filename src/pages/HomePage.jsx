@@ -6,17 +6,11 @@ import {
 import Link from '../components/Link.jsx'
 
 class HomePage extends Component {
-  // Style to put on the link :
-  //  display: flex;
-  //  justify-content: center;
-  //  align-items: center;
-  //  height: 100%
-
   render () {
     return (
-      <div class='home-page'>
-        <Link redirectPage={EDIT_PAGE_IDENTIFIER} label="Edition mode" />
-        <Link redirectPage={STREAM_PAGE_IDENTIFIER} label="Streaming mode" />
+      <div className='page home-page'>
+        <Link className="button is-info" redirectPage={EDIT_PAGE_IDENTIFIER} label="Edition mode" />
+        <Link className="button is-warning" redirectPage={STREAM_PAGE_IDENTIFIER} label="Streaming mode" />
       </div>
     )
   }

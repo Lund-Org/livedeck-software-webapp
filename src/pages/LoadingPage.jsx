@@ -83,9 +83,9 @@ class LoadingPage extends Component {
 
   render () {
     return (
-      <div className="loading-page">
+      <div className="page loading-page">
         <div className="loading-error-message">{this.state.errorMessage}</div>
-        <LoadingWrapper background="rgba(0, 0, 0, 0.3)" color="#61DAFB" />
+        <LoadingWrapper background="black" color="#61DAFB" />
       </div>
     )
   }

@@ -13,12 +13,19 @@ class Link extends Component {
    * Change the page of the app
    */
   redirect () {
-    this.context.updateCurrentPage(this.props.redirectPage)
+    this.props.preClick()
+    if (this.props.delay) {
+      setTimeout(() => {
+        this.context.updateCurrentPage(this.props.redirectPage)
+      }, this.props.delay)
+    } else {
+      this.context.updateCurrentPage(this.props.redirectPage)
+    }
   }
 
   render () {
     return (
-      <div className={this.props.className}>
+      <div className={`link-component ${this.props.className}`}>
         <a href='#' onClick={this.redirect}>{this.props.label}</a>
       </div>
     )
@@ -26,12 +33,16 @@ class Link extends Component {
 }
 
 Link.defaultProps = {
-  className: ''
+  preClick: () => {},
+  className: '',
+  delay: 0
 }
 
 Link.propTypes = {
+  preClick: PropTypes.func,
   redirectPage: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired
+  label: PropTypes.string.isRequired,
+  delay: PropTypes.number
 }
 
 Link.contextType = CurrentPageContext

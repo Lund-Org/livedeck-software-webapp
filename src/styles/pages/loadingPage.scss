@@ -1,0 +1,13 @@
+.loading-page {
+  position: relative;
+
+  .loading-error-message {
+    text-align: center;
+    color: white;
+    position: fixed;
+    z-index: 2;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+  }
+}
