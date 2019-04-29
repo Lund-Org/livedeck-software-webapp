@@ -4,6 +4,7 @@ import LoadingPage from '../pages/LoadingPage.jsx'
 import LoginPage from '../pages/LoginPage.jsx'
 import RegisterPage from '../pages/RegisterPage.jsx'
 import HomePage from '../pages/HomePage.jsx'
+import EditPage from '../pages/EditPage.jsx'
 import CurrentPageContext from '../contexts/CurrentPageContext'
 
 export default function (currentPage, appState) {
@@ -41,7 +42,10 @@ export default function (currentPage, appState) {
         </CurrentPageContext.Provider>
       )
     case pagesIdentifier.EDIT_PAGE_IDENTIFIER:
-      return <div>Mode edition</div>
+      return <EditPage
+        user={appState.user}
+        categories={appState.categories}
+        bindings={appState.bindings} />
     case pagesIdentifier.STREAM_PAGE_IDENTIFIER:
       return <div>Mode stream</div>
     default:

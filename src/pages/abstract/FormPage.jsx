@@ -90,7 +90,7 @@ class FormPage extends React.Component {
     try {
       const categories = await categoriesAPI.index(userKey)
 
-      this.props.categories.updateCategories(categories)
+      this.props.categories.updateCategories(categories.body)
     } catch (e) {
       console.log(e)
       if (e.response.statusCode === 404) {
@@ -109,7 +109,7 @@ class FormPage extends React.Component {
     try {
       const bindings = await bindingsAPI.index(userKey)
 
-      this.props.bindings.updateBindings(bindings)
+      this.props.bindings.updateBindings(bindings.body)
     } catch (e) {
       console.log(e)
       if (e.response.statusCode === 404) {

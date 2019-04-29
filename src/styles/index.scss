@@ -4,7 +4,12 @@
 @import "pages/loadingPage";
 @import "pages/formPage";
 @import "pages/homePage";
+@import "pages/editPage";
 @import "wrappers/loadingWrapper";
+@import "wrappers/bindingsWrapper";
+@import "wrappers/categoriesWrapper";
+@import "components/binding";
+@import "components/category";
 
 html {
   height: 100%;
@@ -21,6 +26,32 @@ body {
 
 #root, .app, .page {
   height: 100%;
+}
+
+.app .app-websocket-loader {
+  z-index: 10;
+}
+
+.app .app-websocket-loader .app-websocket-error {
+  position: fixed;
+  top: calc(50% + 100px);
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  z-index: 3;
+  font-weight: bold;
+}
+
+.app .app-websocket-loader .loading-wrapper .loading-block {
+  display: flex;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
 }
 
 .page {

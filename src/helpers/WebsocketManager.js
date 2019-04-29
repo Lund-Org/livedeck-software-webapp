@@ -5,6 +5,8 @@ export default class WebsocketManager {
     this.io = null
     this.displayLoader = displayLoader
     this.lastToken = null
+
+    this.authenticateCallback = () => {}
   }
 
   /**
@@ -49,14 +51,26 @@ export default class WebsocketManager {
    * @param {Function} _callback The callback to execute. First parameter is the error and the second is the data on success
    */
   authenticate (user, _callback) {
+    const successCallback = (data) => {
+      this.lastToken = user.key
+      _callback(null, data)
+      this.unbindAuthListener(successCallback, errorCallback)
+    }
+    const errorCallback = () => {
+      _callback(true)
+      this.unbindAuthListener(successCallback, errorCallback)
+    }
+
     if (!user || typeof user === 'undefined') {
       return _callback(true)
     }
-    this.io.on('authentication-ok', (data) => {
-      this.lastToken = user.key
-      _callback(null, data)
-    }).on('authentication-ko', (data) => {
-      _callback(true)
-    }).emit('authentify', { token: user.key, device: 'software' })
+    this.io.on('authentication-ok', successCallback)
+      .on('authentication-ko', errorCallback)
+      .emit('authentify', { token: user.key, device: 'software' })
+  }
+
+  unbindAuthListener (success, error) {
+    this.io.removeListener('authentication-ok', success)
+    this.io.removeListener('authentication-ko', error)
   }
 }

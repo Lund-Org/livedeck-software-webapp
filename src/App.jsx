@@ -60,14 +60,14 @@ class App extends Component {
     const websocketLoader = this.state.shouldDisplayLoader ? (
       <div className='app-websocket-loader'>
         <div className='app-websocket-error'>{ERROR_APP_WEBSOCKET_DISCONNECTED_MESSAGE}</div>
-        <LoadingWrapper background="rgba(0, 0, 0, 0.3)" color="#61DAFB" />
+        <LoadingWrapper background="rgba(0, 0, 0, 0.7)" color="#61DAFB" />
       </div>
     ) : null
 
-    if (this.previousPage !== this.state.currentPage.data) {
-      this.page = resolvePage(this.state.currentPage.data, this.state)
-      this.previousPage = this.state.currentPage.data
-    }
+    // if (this.previousPage !== this.state.currentPage.data) {
+    this.page = resolvePage(this.state.currentPage.data, this.state)
+    // this.previousPage = this.state.currentPage.data
+    // }
 
     return (
       <div className='app'>

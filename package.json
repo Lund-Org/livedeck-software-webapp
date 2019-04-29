@@ -42,6 +42,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-app-polyfill": "^0.2.2",
+    "react-beautiful-dnd": "^11.0.1",
     "react-dev-utils": "^8.0.0",
     "react-dom": "^16.8.6",
     "react-epic-spinners": "^0.3.0",

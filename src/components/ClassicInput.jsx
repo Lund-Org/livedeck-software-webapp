@@ -19,11 +19,15 @@ class ClassicInput extends Component {
   }
 
   render () {
+    const label = this.props.label.length ? (
+      <div className="field-label is-normal">
+        <label className="label">{this.props.label}</label>
+      </div>
+    ) : null
+
     return (
       <div className="input-block classic-input-component field is-horizontal">
-        <div className="field-label is-normal">
-          <label className="label">{this.props.label}</label>
-        </div>
+        {label}
         <div className="field-body">
           <div className="field">
             <div className="control">
@@ -37,11 +41,12 @@ class ClassicInput extends Component {
 }
 
 ClassicInput.defaultProps = {
+  label: '',
   type: 'text'
 }
 
 ClassicInput.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   type: PropTypes.string,
   value: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
