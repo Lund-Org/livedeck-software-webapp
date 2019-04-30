@@ -13,7 +13,15 @@ class CategoriesWrapper extends EditWrapper {
   }
 
   render () {
-    return super.render('category', 'link', this.props.categories, this.generateBinding)
+    return (
+      <div className={`binding-wrapper column is-6`}>
+        {this.renderDroppableArea(
+          'category',
+          this.renderResource(this.props.categories, this.generateBinding)
+        )}
+        {this.renderFooterActions('link', 'createCategory')}
+      </div>
+    )
   }
 }
 

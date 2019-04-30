@@ -2,13 +2,13 @@ import React from 'react'
 import ClassicInput from '../components/ClassicInput.jsx'
 import Link from '../components/Link.jsx'
 import SubmitButton from '../components/SubmitButton.jsx'
-import Form from './abstract/Form.jsx'
+import UserForm from './abstract/UserForm.jsx'
 import {
   LOGIN_PAGE_IDENTIFIER
   // RESET_PASSWORD_PAGE_IDENTIFIER
 } from '../constants/page'
 
-class RegisterForm extends Form {
+class RegisterForm extends UserForm {
   render () {
     return (
       <div className="register-form">

@@ -13,7 +13,15 @@ class BindingWrapper extends EditWrapper {
   }
 
   render () {
-    return super.render('binding', 'link', this.props.bindings, this.generateBinding)
+    return (
+      <div className={`binding-wrapper column is-6`}>
+        {this.renderDroppableArea(
+          'binding',
+          this.renderResource(this.props.bindings, this.generateBinding)
+        )}
+        {this.renderFooterActions('link', 'createBinding')}
+      </div>
+    )
   }
 }
 

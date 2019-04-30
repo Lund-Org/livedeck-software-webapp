@@ -1,6 +1,7 @@
 import React from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 import ClassicInput from '../../components/ClassicInput'
+import Button from '../../components/Button'
 
 class EditWrapper extends React.Component {
   constructor (props) {
@@ -38,24 +39,36 @@ class EditWrapper extends React.Component {
     return resources
   }
 
-  render (resourceName, buttonType, collection, callbackResourceGenerator) {
+  /**
+   * xxx
+   * @return {Array<Binding>}
+   */
+  renderDroppableArea (resourceName, resourceList) {
     return (
-      <div className={`${resourceName}-wrapper column is-6`}>
-        <Droppable droppableId={`${resourceName}-droppable`} type={`${resourceName}`}>
-          {(provided, snapshot) => (
-            <div className={`${resourceName}-droppable ${snapshot.isDraggingOver ? 'is-drag-hover' : ''}`} ref={provided.innerRef}>
-              {this.renderResource(collection, callbackResourceGenerator)}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-        <div className="footerActions">
-          <div className="field">
-            <ClassicInput type="text" value={this.state.searchValue} onSubmit={() => { }} onType={this.setFilterValue} />
+      <Droppable droppableId={`${resourceName}-droppable`} type={`${resourceName}`}>
+        {(provided, snapshot) => (
+          <div className={`${resourceName}-droppable ${snapshot.isDraggingOver ? 'is-drag-hover' : ''}`} ref={provided.innerRef}>
+            {resourceList}
+            {provided.placeholder}
           </div>
-          <div>
-            <a className={`button is-large is-${buttonType} is-fullwidth`}>+</a>
-          </div>
+        )}
+      </Droppable>
+    )
+  }
+
+  /**
+   * xxx
+   * @return {Array<Binding>}
+   */
+  renderFooterActions (buttonType, actionCode) {
+    return (
+      <div className="footerActions">
+        <div className="field">
+          <ClassicInput type="text" placeholder="Filter" value={this.state.searchValue}
+            onSubmit={() => { }} onType={this.setFilterValue} />
+        </div>
+        <div>
+          <Button buttonType={buttonType} className={`is-fullwidth`} actionCode={actionCode} label="+" />
         </div>
       </div>
     )

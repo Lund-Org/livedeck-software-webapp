@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class ClassicInput extends Component {
+class Select extends Component {
   constructor (props) {
     super(props)
 
     this.submitForm = this.submitForm.bind(this)
+    this.renderOptionList = this.renderOptionList.bind(this)
   }
 
   /**
@@ -16,6 +17,16 @@ class ClassicInput extends Component {
     if (event.keyCode === 13) {
       this.props.onSubmit()
     }
+  }
+
+  /**
+   * Check if the key pressed is enter
+   * @param {Object} event The event object
+   */
+  renderOptionList () {
+    return this.props.values.map((data, index) => {
+      return (<option key={index} value={data.value}>{data.label}</option>)
+    })
   }
 
   render () {
@@ -31,9 +42,11 @@ class ClassicInput extends Component {
         <div className="field-body">
           <div className="field">
             <div className="control">
-              <input className="input" placeholder={this.props.placeholder}
-                type={this.props.type} value={this.props.value}
-                onKeyDown={this.submitForm} onChange={this.props.onType} />
+              <div className={`select is-${this.props.type}`}>
+                <select value={this.props.value} onChange={this.props.onType}>
+                  {this.renderOptionList()}
+                </select>
+              </div>
             </div>
           </div>
         </div>
@@ -42,19 +55,18 @@ class ClassicInput extends Component {
   }
 }
 
-ClassicInput.defaultProps = {
+Select.defaultProps = {
   label: '',
-  placeholder: '',
-  type: 'text'
+  type: 'info'
 }
 
-ClassicInput.propTypes = {
+Select.propTypes = {
   label: PropTypes.string,
-  placeholder: PropTypes.string,
   type: PropTypes.string,
   value: PropTypes.string.isRequired,
+  values: PropTypes.array.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onType: PropTypes.func.isRequired
 }
 
-export default ClassicInput
+export default Select

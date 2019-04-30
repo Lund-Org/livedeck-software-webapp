@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-class Form extends React.Component {
+class UserForm extends React.Component {
   constructor (props) {
     super(props)
 
@@ -36,8 +36,8 @@ class Form extends React.Component {
   }
 }
 
-Form.propTypes = {
+UserForm.propTypes = {
   onSubmit: PropTypes.func.isRequired
 }
 
-export default Form
+export default UserForm

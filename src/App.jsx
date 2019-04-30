@@ -37,7 +37,6 @@ class App extends Component {
       }
     }
     this.previousPageIdentifier = null
-    this.page = null
   }
 
   /**
@@ -63,15 +62,11 @@ class App extends Component {
         <LoadingWrapper background="rgba(0, 0, 0, 0.7)" color="#61DAFB" />
       </div>
     ) : null
-
-    // if (this.previousPage !== this.state.currentPage.data) {
-    this.page = resolvePage(this.state.currentPage.data, this.state)
-    // this.previousPage = this.state.currentPage.data
-    // }
+    const page = resolvePage(this.state.currentPage.data, this.state)
 
     return (
       <div className='app'>
-        {this.page}
+        {page}
         {websocketLoader}
       </div>
     )

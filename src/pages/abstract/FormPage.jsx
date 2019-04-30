@@ -63,7 +63,6 @@ class FormPage extends React.Component {
       await this.getCategories(user.body.key)
       await this.getBindings(user.body.key)
     } catch (e) {
-      console.log(e)
       if (e.response.statusCode === 404) {
         this.setState({ isLoading: false, error: ERROR_LOGIN_USER_NOT_FOUND_MESSAGE })
       } else {
@@ -92,7 +91,6 @@ class FormPage extends React.Component {
 
       this.props.categories.updateCategories(categories.body)
     } catch (e) {
-      console.log(e)
       if (e.response.statusCode === 404) {
         this.setState({ isLoading: false, error: 'todo' })
       } else {
@@ -111,7 +109,6 @@ class FormPage extends React.Component {
 
       this.props.bindings.updateBindings(bindings.body)
     } catch (e) {
-      console.log(e)
       if (e.response.statusCode === 404) {
         this.setState({ isLoading: false, error: 'todo' })
       } else {

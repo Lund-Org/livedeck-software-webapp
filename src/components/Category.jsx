@@ -15,8 +15,12 @@ class Category extends Component {
             style={ provided.draggableProps.style }>
             <div className="columns is-mobile">
               <div className="column is-10">{this.props.category.name}</div>
-              <div className="column is-1">(i)</div>
-              <div className="column is-1">(x)</div>
+              <div className="column is-1 has-text-centered">
+                <i className="fas fa-cogs"></i>
+              </div>
+              <div className="column is-1 has-text-centered">
+                <i className="far fa-trash-alt"></i>
+              </div>
             </div>
             <Droppable droppableId={`category-${this.props.category.id}-bindings`} type="binding">
               {(provided, snapshot) => (
