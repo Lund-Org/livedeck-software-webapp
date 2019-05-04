@@ -11,10 +11,10 @@ class CreateBindingForm extends CreateResourceForm {
     this.state = {
       name: '',
       icon: '',
-      type: '',
-      weight: 1
+      type: ''
     }
     this.bindingsType = [
+      { label: '', value: null },
       { label: 'monType', value: 2 }
     ]
   }

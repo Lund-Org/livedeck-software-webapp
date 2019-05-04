@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // import LoadingWrapper from '../wrappers/LoadingWrapper'
-import EditPageContext from '../contexts/EditPageContext'
+import EditPopinManagementContext from '../contexts/EditPopinManagementContext'
 
 class PopinWrapper extends React.Component {
   constructor (props) {
@@ -14,7 +14,6 @@ class PopinWrapper extends React.Component {
   }
 
   closePopin () {
-    console.log(this.context.trigger)
     this.context.trigger(null)
   }
 
@@ -40,6 +39,6 @@ PopinWrapper.propTypes = {
   popinTitle: PropTypes.string
 }
 
-PopinWrapper.contextType = EditPageContext
+PopinWrapper.contextType = EditPopinManagementContext
 
 export default PopinWrapper

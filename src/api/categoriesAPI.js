@@ -29,5 +29,26 @@ export default {
       .send(category)
       .set('Content-Type', 'application/json')
       .set('Authorization', key)
+  },
+  /**
+   * Call the POST /category route of the livedeck server
+   * @param {string} key The key of the user
+   * @param {number} categoryId The id of the category to delete
+   */
+  async createCategory (key, category) {
+    return superagent.post(`http://${global.endpoint}/categories`)
+      .send(category)
+      .set('Content-Type', 'application/json')
+      .set('Authorization', key)
+  },
+  /**
+   * Call the DELETE /category/:id route of the livedeck server
+   * @param {string} key The key of the user
+   * @param {number} categoryId The id of the category to delete
+   */
+  async deleteCategory (key, categoryId) {
+    return superagent.delete(`http://${global.endpoint}/categories/${categoryId}`)
+      .set('Content-Type', 'application/json')
+      .set('Authorization', key)
   }
 }

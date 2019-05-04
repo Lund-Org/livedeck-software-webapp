@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import EditPageContext from '../contexts/EditPageContext'
+import EditPopinManagementContext from '../contexts/EditPopinManagementContext'
 
 class Button extends Component {
   constructor (props) {
@@ -41,6 +41,6 @@ Button.propTypes = {
   label: PropTypes.string
 }
 
-Button.contextType = EditPageContext
+Button.contextType = EditPopinManagementContext
 
 export default Button

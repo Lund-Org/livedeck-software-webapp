@@ -7,7 +7,8 @@ import dndProcessor from '../helpers/dndProcessor'
 import bindingsAPI from '../api/bindingsAPI'
 import categoriesAPI from '../api/categoriesAPI'
 import resolvePopin from '../helpers/resolvePopin'
-import EditPageContext from '../contexts/EditPageContext'
+import EditContext from '../contexts/EditContext'
+import EditPopinManagementContext from '../contexts/EditPopinManagementContext'
 import { POPIN_MAPPING } from '../constants/popin'
 
 class EditPage extends React.Component {
@@ -19,10 +20,23 @@ class EditPage extends React.Component {
         data: null,
         updatePopin: (popinValue) => {
           this.setState({ popin: { data: popinValue, updatePopin: this.state.updatePopin } })
+          if (popinValue === null) {
+            this.callback = null
+          }
         }
       }
     }
-    this.contextParams = { data: POPIN_MAPPING, trigger: this.state.popin.updatePopin }
+    this.callback = null
+    this.contextParams = {
+      data: POPIN_MAPPING,
+      trigger: this.state.popin.updatePopin,
+      executeCallback: async () => {
+        return this.callback(this.context.user.data.key)
+      },
+      attachCallback: (value) => {
+        this.callback = value
+      }
+    }
     this.onDragEnd = this.onDragEnd.bind(this)
   }
 
@@ -36,7 +50,7 @@ class EditPage extends React.Component {
     const result = dndProcessor.sortList(event, resources.data)
 
     resources[dataContext.updateResources](result.orderedList)
-    dataContext.resourceAPI(this.props.user.data.key, result.itemUpdated)
+    dataContext.resourceAPI(this.context.user.data.key, result.itemUpdated)
   }
 
   /**
@@ -46,23 +60,26 @@ class EditPage extends React.Component {
   onDragEnd (event) {
     const source = event.source
     const destination = event.destination
-    const bindings = this.props.bindings
-    const categories = this.props.categories
+    const bindings = this.context.bindings
+    const categories = this.context.categories
 
+    if (!destination) {
+      return
+    }
     if (!(source.index === destination.index && source.droppableId === destination.droppableId)) {
       if (event.type === 'binding' && event.destination.droppableId === 'binding-droppable') {
-        this.reorderBinding(event, bindings, {
+        this.reorderResource(event, bindings, {
           updateResources: 'updateBindings', resourceAPI: bindingsAPI.updateBinding
         })
       } else if (event.type === 'category') {
-        this.reorderCategory(event, categories, {
+        this.reorderResource(event, categories, {
           updateResources: 'updateCategories', resourceAPI: categoriesAPI.updateCategory
         })
       } else if (event.type === 'binding') {
         const assignmentData = dndProcessor.assignBindingToCategory(event, bindings.data, categories.data)
 
         if (assignmentData) {
-          categoriesAPI.addBinding(this.props.user.data.key, assignmentData.bindingId, assignmentData.categoryId)
+          categoriesAPI.addBinding(this.context.user.data.key, assignmentData.bindingId, assignmentData.categoryId)
           categories.updateCategories(assignmentData.categories)
         }
       }
@@ -70,22 +87,24 @@ class EditPage extends React.Component {
   }
 
   render () {
-    const popin = resolvePopin(this.state.popin.data, this.state)
+    const popin = resolvePopin(this.state.popin.data, this.state, this.context)
 
     return (
       <div className="page edit-page">
-        <EditPageContext.Provider value={this.contextParams}>
+        <EditPopinManagementContext.Provider value={this.contextParams}>
           <div className="edit-page-container columns is-multiline">
             <DragDropContext onDragEnd={this.onDragEnd}>
-              <BindingsWrapper bindings={this.props.bindings.data} />
-              <CategoriesWrapper categories={this.props.categories.data} />
+              <BindingsWrapper bindings={this.context.bindings.data} />
+              <CategoriesWrapper categories={this.context.categories.data} />
             </DragDropContext>
           </div>
           {popin}
-        </EditPageContext.Provider>
+        </EditPopinManagementContext.Provider>
       </div>
     )
   }
 }
+
+EditPage.contextType = EditContext
 
 export default EditPage

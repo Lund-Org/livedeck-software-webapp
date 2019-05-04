@@ -6,6 +6,7 @@ import RegisterPage from '../pages/RegisterPage.jsx'
 import HomePage from '../pages/HomePage.jsx'
 import EditPage from '../pages/EditPage.jsx'
 import CurrentPageContext from '../contexts/CurrentPageContext'
+import EditContext from '../contexts/EditContext'
 
 export default function (currentPage, appState) {
   switch (currentPage) {
@@ -42,10 +43,15 @@ export default function (currentPage, appState) {
         </CurrentPageContext.Provider>
       )
     case pagesIdentifier.EDIT_PAGE_IDENTIFIER:
-      return <EditPage
-        user={appState.user}
-        categories={appState.categories}
-        bindings={appState.bindings} />
+      return (
+        <EditContext.Provider value={{
+          user: appState.user,
+          categories: appState.categories,
+          bindings: appState.bindings
+        }}>
+          <EditPage />
+        </EditContext.Provider>
+      )
     case pagesIdentifier.STREAM_PAGE_IDENTIFIER:
       return <div>Mode stream</div>
     default:
