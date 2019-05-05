@@ -39,7 +39,7 @@ export default function (currentPage, appState) {
     case pagesIdentifier.HOME_PAGE_IDENTIFIER:
       return (
         <CurrentPageContext.Provider value={appState.currentPage}>
-          <HomePage />
+          <HomePage user={appState.user} />
         </CurrentPageContext.Provider>
       )
     case pagesIdentifier.EDIT_PAGE_IDENTIFIER:
@@ -49,7 +49,9 @@ export default function (currentPage, appState) {
           categories: appState.categories,
           bindings: appState.bindings
         }}>
-          <EditPage />
+          <CurrentPageContext.Provider value={appState.currentPage}>
+            <EditPage />
+          </CurrentPageContext.Provider>
         </EditContext.Provider>
       )
     case pagesIdentifier.STREAM_PAGE_IDENTIFIER:

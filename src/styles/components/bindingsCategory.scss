@@ -1,0 +1,17 @@
+.category-binding-list {
+  height: 465px;
+  overflow: auto;
+  background: #EFEFEF;
+  border: 1px solid #333;
+  padding: 5px;
+
+  .category-binding {
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 6px 4px;
+    margin-bottom: 6px;
+
+    .columns { margin: 0; }
+    .column { padding: 0; }
+  }
+}

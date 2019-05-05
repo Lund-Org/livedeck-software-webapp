@@ -5,3 +5,13 @@
     }
   }
 }
+
+.update-binding-form {
+  .configuration-block {
+    margin-bottom: 0.75rem;
+
+    &:empty {
+      margin: 0;
+    }
+  }
+}

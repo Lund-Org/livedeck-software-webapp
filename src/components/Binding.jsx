@@ -4,7 +4,7 @@ import { Draggable } from 'react-beautiful-dnd'
 import EditContext from '../contexts/EditContext'
 import EditPopinManagementContext from '../contexts/EditPopinManagementContext'
 import bindingsAPI from '../api/bindingsAPI'
-import { DELETE_CONFIRMATION_POPIN_IDENTIFIER } from '../constants/popin'
+import { EDIT_BINDING_POPIN_IDENTIFIER, DELETE_CONFIRMATION_POPIN_IDENTIFIER } from '../constants/popin'
 import processor from '../helpers/processor'
 
 class Binding extends Component {
@@ -12,6 +12,7 @@ class Binding extends Component {
     super(props)
 
     this.deleteBinding = this.deleteBinding.bind(this)
+    this.displayUpdateBinding = this.displayUpdateBinding.bind(this)
     this.displayDeleteWarning = this.displayDeleteWarning.bind(this)
   }
 
@@ -24,6 +25,18 @@ class Binding extends Component {
     return () => {
       editPopinManagementContext.attachCallback(this.deleteBinding(this.props.binding.id))
       editPopinManagementContext.trigger(DELETE_CONFIRMATION_POPIN_IDENTIFIER)
+    }
+  }
+
+  /**
+   * The callback on click to display the update popin
+   * @param {Object} editPopinManagementContext The context to manage the popins
+   * @return {Function}
+   */
+  displayUpdateBinding (editPopinManagementContext) {
+    return () => {
+      editPopinManagementContext.attachCallback(() => this.props.binding.id)
+      editPopinManagementContext.trigger(EDIT_BINDING_POPIN_IDENTIFIER)
     }
   }
 
@@ -61,7 +74,7 @@ class Binding extends Component {
                 return (
                   <div className="columns is-mobile">
                     <div className="column is-10">{this.props.binding.name}</div>
-                    <div className="column is-1 has-text-centered is-clickable">
+                    <div className="column is-1 has-text-centered is-clickable" onClick={this.displayUpdateBinding(ctx)}>
                       <i className="fas fa-cogs"></i>
                     </div>
                     <div className="column is-1 has-text-centered is-clickable" onClick={this.displayDeleteWarning(ctx)}>

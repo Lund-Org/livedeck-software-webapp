@@ -2,9 +2,9 @@ import React from 'react'
 import ClassicInput from '../components/ClassicInput.jsx'
 import Select from '../components/Select.jsx'
 import SubmitButton from '../components/SubmitButton.jsx'
-import CreateResourceForm from './abstract/CreateResourceForm.jsx'
+import ResourceForm from './abstract/ResourceForm.jsx'
 
-class CreateBindingForm extends CreateResourceForm {
+class CreateBindingForm extends ResourceForm {
   constructor (props) {
     super(props)
 

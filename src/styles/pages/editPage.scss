@@ -21,6 +21,7 @@
         padding: 10px 10px;
         width: 100%;
         height: calc(100% - 110px);
+        overflow: auto;
       }
 
       .box {
@@ -38,6 +39,24 @@
 
       .footerActions {
         padding: 0 15px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .edit-page.page {
+    .edit-page-container {
+      & > .column {
+        height: 50%;
+
+        &:first-of-type {
+          padding-bottom: 5%;
+        }
+
+        &:last-of-type {
+          padding-top: 5%;
+        }
       }
     }
   }

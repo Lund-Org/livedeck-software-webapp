@@ -8,9 +8,12 @@
 @import "wrappers/loadingWrapper";
 @import "wrappers/bindingsWrapper";
 @import "wrappers/categoriesWrapper";
+@import "components/backHome";
 @import "components/binding";
+@import "components/bindingsCategory";
 @import "components/category";
 @import "components/colorpicker";
+@import "components/disconnectButton";
 
 html {
   height: 100%;

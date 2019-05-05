@@ -10,6 +10,8 @@ import resolvePopin from '../helpers/resolvePopin'
 import EditContext from '../contexts/EditContext'
 import EditPopinManagementContext from '../contexts/EditPopinManagementContext'
 import { POPIN_MAPPING } from '../constants/popin'
+import BackHome from '../components/BackHome'
+import DisconnectButton from '../components/DisconnectButton'
 
 class EditPage extends React.Component {
   constructor (props) {
@@ -30,7 +32,7 @@ class EditPage extends React.Component {
     this.contextParams = {
       data: POPIN_MAPPING,
       trigger: this.state.popin.updatePopin,
-      executeCallback: async () => {
+      executeCallback: () => {
         return this.callback(this.context.user.data.key)
       },
       attachCallback: (value) => {
@@ -79,7 +81,7 @@ class EditPage extends React.Component {
         const assignmentData = dndProcessor.assignBindingToCategory(event, bindings.data, categories.data)
 
         if (assignmentData) {
-          categoriesAPI.addBinding(this.context.user.data.key, assignmentData.bindingId, assignmentData.categoryId)
+          categoriesAPI.addBinding(this.context.user.data.key, assignmentData.categoryId, assignmentData.bindingId)
           categories.updateCategories(assignmentData.categories)
         }
       }
@@ -87,20 +89,24 @@ class EditPage extends React.Component {
   }
 
   render () {
-    const popin = resolvePopin(this.state.popin.data, this.state, this.context)
+    const popin = resolvePopin(this.state.popin.data, this.state, this.contextParams)
 
     return (
-      <div className="page edit-page">
-        <EditPopinManagementContext.Provider value={this.contextParams}>
-          <div className="edit-page-container columns is-multiline">
-            <DragDropContext onDragEnd={this.onDragEnd}>
-              <BindingsWrapper bindings={this.context.bindings.data} />
-              <CategoriesWrapper categories={this.context.categories.data} />
-            </DragDropContext>
-          </div>
-          {popin}
-        </EditPopinManagementContext.Provider>
-      </div>
+      <React.Fragment>
+        <BackHome />
+        <DisconnectButton user={this.context.user} />
+        <div className="page edit-page">
+          <EditPopinManagementContext.Provider value={this.contextParams}>
+            <div className="edit-page-container columns is-multiline">
+              <DragDropContext onDragEnd={this.onDragEnd}>
+                <BindingsWrapper bindings={this.context.bindings.data} />
+                <CategoriesWrapper categories={this.context.categories.data} />
+              </DragDropContext>
+            </div>
+            {popin}
+          </EditPopinManagementContext.Provider>
+        </div>
+      </React.Fragment>
     )
   }
 }

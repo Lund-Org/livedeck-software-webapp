@@ -4,7 +4,7 @@ import { Droppable, Draggable } from 'react-beautiful-dnd'
 import EditContext from '../contexts/EditContext'
 import EditPopinManagementContext from '../contexts/EditPopinManagementContext'
 import categoriesAPI from '../api/categoriesAPI'
-import { DELETE_CONFIRMATION_POPIN_IDENTIFIER } from '../constants/popin'
+import { EDIT_CATEGORY_POPIN_IDENTIFIER, DELETE_CONFIRMATION_POPIN_IDENTIFIER } from '../constants/popin'
 import processor from '../helpers/processor'
 
 class Category extends Component {
@@ -25,6 +25,18 @@ class Category extends Component {
     return () => {
       editPopinManagementContext.attachCallback(this.deleteCategory(this.props.category.id))
       editPopinManagementContext.trigger(DELETE_CONFIRMATION_POPIN_IDENTIFIER)
+    }
+  }
+
+  /**
+   * The callback on click to display the update popin
+   * @param {Object} editPopinManagementContext The context to manage the popins
+   * @return {Function}
+   */
+  displayUpdateCategory (editPopinManagementContext) {
+    return () => {
+      editPopinManagementContext.attachCallback(() => this.props.category.id)
+      editPopinManagementContext.trigger(EDIT_CATEGORY_POPIN_IDENTIFIER)
     }
   }
 
@@ -73,7 +85,7 @@ class Category extends Component {
                 return (
                   <div className="columns is-mobile">
                     <div className="column is-10">{this.props.category.name}</div>
-                    <div className="column is-1 has-text-centered is-clickable">
+                    <div className="column is-1 has-text-centered is-clickable" onClick={this.displayUpdateCategory(ctx)}>
                       <i className="fas fa-cogs"></i>
                     </div>
                     <div className="column is-1 has-text-centered is-clickable" onClick={this.displayDeleteWarning(ctx)}>

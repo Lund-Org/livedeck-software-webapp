@@ -11,6 +11,15 @@ export default {
       .set('Authorization', key)
   },
   /**
+   * Call the GET /categories/:id route of the livedeck server
+   * @param {string} key The key of the user
+   */
+  async getCategory (key, id) {
+    return superagent.get(`http://${global.endpoint}/categories/${id}`)
+      .set('Content-Type', 'application/json')
+      .set('Authorization', key)
+  },
+  /**
    * Call the POST /categories route of the livedeck server
    * @param {string} key The key of the user
    */
@@ -20,11 +29,20 @@ export default {
       .set('Authorization', key)
   },
   /**
+   * Call the DELETE /categories route of the livedeck server
+   * @param {string} key The key of the user
+   */
+  async removeBinding (key, categoryId, bindingId) {
+    return superagent.post(`http://${global.endpoint}/categories/${categoryId}/bindings/${bindingId}`)
+      .set('Content-Type', 'application/json')
+      .set('Authorization', key)
+  },
+  /**
    * Call the PATCH /categories/:id route of the livedeck server
    * @param {string} key The key of the user
    * @param {Object} category The category to update
    */
-  async update (key, category) {
+  async updateCategory (key, category) {
     return superagent.patch(`http://${global.endpoint}/categories/${category.id}`)
       .send(category)
       .set('Content-Type', 'application/json')
